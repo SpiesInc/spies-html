@@ -19,25 +19,51 @@
                     <div class="status-indicator" id="statusIndicator"></div>
                 </div>
                 <div class="user-info">
-                    <div class="user-id" id="userId">Username</div>
+                    <div class="user-id" id="userId">Display Name</div>
+                    <div class="user-name" id="userName">Username</div>
                     <div class="user-status" id="userStatus">unknown</div>
+                </div>
+            </div>
+            
+            <!-- Custom Status -->
+            <div class="activity-card hidden" id="customStatus">
+                <div class="activity-type">CUSTOM STATUS</div>
+                <div class="custom-status-content">
+                    <span id="customStatusEmoji"></span>
+                    <span id="customStatusText"></span>
                 </div>
             </div>
             
             <!-- Game Activity -->
             <div class="activity-card hidden" id="gameActivity">
                 <div class="activity-type">PLAYING A GAME</div>
-                <div class="game-activity" id="gameName"></div>
+                <div class="activity-container game-activity">
+                    <div class="activity-icon">
+                        <img id="gameIcon" src="/api/placeholder/48/48" alt="Game Icon">
+                    </div>
+                    <div class="activity-info">
+                        <div class="game-name" id="gameName">Game Name</div>
+                        <div class="game-details hidden" id="gameDetails">Game Details</div>
+                        <div class="game-state hidden" id="gameState">Game State</div>
+                        <div class="activity-duration hidden" id="gameDuration">
+                            <svg class="duration-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 1.33337C4.32 1.33337 1.33333 4.32004 1.33333 8.00004C1.33333 11.68 4.32 14.6667 8 14.6667C11.68 14.6667 14.6667 11.68 14.6667 8.00004C14.6667 4.32004 11.68 1.33337 8 1.33337ZM8 13.3334C5.06 13.3334 2.66667 10.94 2.66667 8.00004C2.66667 5.06004 5.06 2.66671 8 2.66671C10.94 2.66671 13.3333 5.06004 13.3333 8.00004C13.3333 10.94 10.94 13.3334 8 13.3334Z" fill="currentColor"/>
+                                <path d="M8.66667 4.66663H7.33334V8.66663L10.6667 10.7333L11.3333 9.66663L8.66667 8.06663V4.66663Z" fill="currentColor"/>
+                            </svg>
+                            <span>3 hr 45 min</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <!-- Spotify Activity -->
             <div class="activity-card hidden" id="spotifyActivity">
                 <div class="activity-type">LISTENING TO SPOTIFY</div>
-                <div class="spotify-activity">
-                    <div class="spotify-art">
-                        <img id="spotifyArt" src="/api/placeholder/64/64" alt="Album Cover">
+                <div class="activity-container spotify-activity">
+                    <div class="activity-icon">
+                        <img id="spotifyArt" src="/api/placeholder/48/48" alt="Album Cover">
                     </div>
-                    <div class="spotify-info">
+                    <div class="activity-info">
                         <div class="spotify-title" id="spotifyTitle">Song Title</div>
                         <div class="spotify-artist" id="spotifyArtist">Artist</div>
                         <div class="spotify-album" id="spotifyAlbum">Album</div>
@@ -48,12 +74,50 @@
                             <span id="currentTime">0:00</span>
                             <span id="totalTime">0:00</span>
                         </div>
-                        <div class="spotify-logo">
-                            <svg class="spotify-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" fill="#1DB954"/>
-                                <path d="M16.5 10.7376C14.1754 9.32247 10.8287 9.1 8.01791 9.82247C7.55717 9.93212 7.09326 9.65459 6.98326 9.19459C6.87362 8.73424 7.15114 8.27033 7.61114 8.16033C10.8287 7.33247 14.6006 7.58601 17.3328 9.2376C17.7574 9.48108 17.8917 10.0165 17.648 10.441C17.4046 10.8652 16.869 10.9996 16.4452 10.7559L16.5 10.7376ZM16.2334 13.1977C16.0263 13.5411 15.5966 13.6477 15.2531 13.4406C13.3 12.2477 10.6591 11.808 8.4025 12.4229C8.0146 12.5257 7.61789 12.2954 7.51511 11.9074C7.41232 11.5194 7.64275 11.1229 8.03062 11.02C10.6939 10.3017 13.7 10.798 15.99 12.2174C16.3334 12.4246 16.44 12.8543 16.2329 13.1977H16.2334ZM15.1554 15.5634C14.9906 15.8337 14.6419 15.9189 14.3716 15.754C12.65 14.7497 10.6733 14.5014 8.60038 14.9977C8.29294 15.0754 7.98115 14.8889 7.90326 14.5817C7.82558 14.2743 8.01223 13.9626 8.31936 13.8846C10.6546 13.326 12.888 13.612 14.8647 14.7791C15.135 14.944 15.2203 15.2931 15.0554 15.5634V15.5634Z" fill="#191414"/>
+                        <div class="activity-buttons">
+                            <button class="activity-button" id="spotifyBtn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" fill="#1DB954"/>
+                                    <path d="M16.5 10.7376C14.1754 9.32247 10.8287 9.1 8.01791 9.82247C7.55717 9.93212 7.09326 9.65459 6.98326 9.19459C6.87362 8.73424 7.15114 8.27033 7.61114 8.16033C10.8287 7.33247 14.6006 7.58601 17.3328 9.2376C17.7574 9.48108 17.8917 10.0165 17.648 10.441C17.4046 10.8652 16.869 10.9996 16.4452 10.7559L16.5 10.7376ZM16.2334 13.1977C16.0263 13.5411 15.5966 13.6477 15.2531 13.4406C13.3 12.2477 10.6591 11.808 8.4025 12.4229C8.0146 12.5257 7.61789 12.2954 7.51511 11.9074C7.41232 11.5194 7.64275 11.1229 8.03062 11.02C10.6939 10.3017 13.7 10.798 15.99 12.2174C16.3334 12.4246 16.44 12.8543 16.2329 13.1977H16.2334ZM15.1554 15.5634C14.9906 15.8337 14.6419 15.9189 14.3716 15.754C12.65 14.7497 10.6733 14.5014 8.60038 14.9977C8.29294 15.0754 7.98115 14.8889 7.90326 14.5817C7.82558 14.2743 8.01223 13.9626 8.31936 13.8846C10.6546 13.326 12.888 13.612 14.8647 14.7791C15.135 14.944 15.2203 15.2931 15.0554 15.5634V15.5634Z" fill="#191414"/>
+                                </svg>
+                                Play on Spotify
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Streaming/YouTube Activity -->
+            <div class="activity-card hidden" id="streamActivity">
+                <div class="activity-type" id="streamType">WATCHING YOUTUBE</div>
+                <div class="activity-container stream-activity">
+                    <div class="activity-icon">
+                        <img id="streamIcon" src="/api/placeholder/48/48" alt="Stream Thumbnail">
+                    </div>
+                    <div class="activity-info">
+                        <div class="stream-title" id="streamTitle">Video Title Will Go Here and Can Wrap to Second Line if Needed</div>
+                        <div class="stream-channel" id="streamChannel">Channel Name</div>
+                        <div class="activity-duration" id="streamDuration">
+                            <svg class="duration-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 1.33337C4.32 1.33337 1.33333 4.32004 1.33333 8.00004C1.33333 11.68 4.32 14.6667 8 14.6667C11.68 14.6667 14.6667 11.68 14.6667 8.00004C14.6667 4.32004 11.68 1.33337 8 1.33337ZM8 13.3334C5.06 13.3334 2.66667 10.94 2.66667 8.00004C2.66667 5.06004 5.06 2.66671 8 2.66671C10.94 2.66671 13.3333 5.06004 13.3333 8.00004C13.3333 10.94 10.94 13.3334 8 13.3334Z" fill="currentColor"/>
+                                <path d="M8.66667 4.66663H7.33334V8.66663L10.6667 10.7333L11.3333 9.66663L8.66667 8.06663V4.66663Z" fill="currentColor"/>
                             </svg>
-                            <span>Spotify</span>
+                            <span id="streamElapsed">49:53</span>
+                        </div>
+                        <div class="activity-buttons">
+                            <button class="activity-button" id="watchBtn">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M14.1667 4.66671L10.8333 8.00004L14.1667 11.3334V4.66671Z" />
+                                    <path d="M2.5 3.33337C2.5 2.87337 2.87 2.50004 3.33333 2.50004H10.8333V13.5H3.33333C2.87 13.5 2.5 13.13 2.5 12.6667V3.33337Z" />
+                                </svg>
+                                Watch Video
+                            </button>
+                            <button class="activity-button" id="channelBtn">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6.66667 4.00004V12.0001L12 8.00004L6.66667 4.00004Z" />
+                                </svg>
+                                View Channel
+                            </button>
                         </div>
                     </div>
                 </div>
