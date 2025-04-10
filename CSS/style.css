@@ -1,0 +1,273 @@
+:root {
+    --discord-dark: #36393f;
+    --discord-darker: #2f3136;
+    --discord-light: #dcddde;
+    --discord-green: #3ba55c;
+    --discord-yellow: #faa61a;
+    --discord-red: #ed4245;
+    --discord-gray: #747f8d;
+    --spotify-green: #1DB954;
+    --spotify-black: #191414;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: black;
+    color: var(--discord-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+
+.logo {
+    width: 150px;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+}
+
+.wrapper {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.container {
+width: 100%;
+max-width: 400px;
+background-color: var(--discord-dark);
+border-radius: 8px;
+overflow: hidden;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.user-card {
+    padding: 20px;
+}
+
+.user-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: var(--discord-darker);
+    overflow: visible;
+    position: relative;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.status-indicator {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--discord-gray);
+    bottom: 0;
+    right: 0;
+    border: 4px solid var(--discord-dark);
+    z-index: 2;
+}
+
+.status-online {
+    background-color: var(--discord-green);
+}
+
+.status-idle {
+    background-color: var(--discord-yellow);
+}
+
+.status-dnd {
+    background-color: var(--discord-red);
+}
+
+.user-info {
+    margin-left: 20px;
+}
+
+.user-id {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.user-status {
+    font-size: 14px;
+    color: var(--discord-gray);
+    text-transform: capitalize;
+}
+
+.activity-card {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: var(--discord-darker);
+    border-radius: 8px;
+}
+
+.activity-type {
+    font-size: 12px;
+    color: var(--discord-gray);
+    margin-bottom: 10px;
+}
+
+.game-activity {
+    font-size: 14px;
+    color: var(--discord-light);
+}
+
+.spotify-activity {
+    display: flex;
+    align-items: center;
+}
+
+.spotify-art {
+    width: 64px;
+    height: 64px;
+    border-radius: 4px;
+    margin-right: 15px;
+    background-color: var(--spotify-black);
+}
+
+.spotify-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.spotify-info {
+    flex: 1;
+}
+
+.spotify-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.spotify-artist {
+    font-size: 14px;
+    color: var(--discord-gray);
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.spotify-album {
+    font-size: 12px;
+    color: var(--discord-gray);
+    margin-bottom: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--spotify-green);
+    transition: width 1s linear;
+}
+
+.time-display {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--discord-gray);
+    margin-top: 4px;
+}
+
+.spotify-logo {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.spotify-logo span {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--spotify-green);
+    margin-left: 5px;
+}
+
+.user-form {
+    background-color: var(--discord-darker);
+    padding: 15px;
+    border-radius: 0 0 8px 8px;
+    display: flex;
+}
+
+.user-input {
+    flex: 1;
+    background-color: #40444b;
+    border: none;
+    border-radius: 4px;
+    color: var(--discord-light);
+    padding: 10px 15px;
+    font-size: 14px;
+}
+
+.user-input:focus {
+    outline: none;
+}
+
+.fetch-btn {
+    background-color: var(--discord-green);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.fetch-btn:hover {
+    background-color: #359052;
+}
+
+.error-message {
+    color: var(--discord-red);
+    text-align: center;
+    padding: 20px;
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Spotify logo SVG */
+.spotify-icon {
+    width: 16px;
+    height: 16px;
+}
